@@ -26,5 +26,13 @@ hololens模拟器使用版本：HoloLens 模拟器生成10.0.17763.134
 
 '''
 
+'''
 hololens开发文档地址：
 https://docs.microsoft.com/zh-cn/windows/mixed-reality/install-the-tools?tabs=unity
+'''
+
+'''
+python3搭建本地服务器（# 通过浏览器直接访问：http://localhost:8000/或:http://127.0.0.1:8000/ 即可）:
+
+python -m http.server 8000 --bind 127.0.0.1
+'''

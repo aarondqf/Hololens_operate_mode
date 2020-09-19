@@ -70,6 +70,10 @@ public class Scan : MonoBehaviour
         {
             Debug.Log(tResult.Text);
         }
+        else
+        {
+            Debug.Log("scan fail");
+        }
     }
     #endregion
 
