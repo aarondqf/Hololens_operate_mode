@@ -1,0 +1,30 @@
+'''
+【
+unity使用版本号：2019.4.10f1
+
+下载链接：https://download.unity3d.com/download_unity/5311b3af6f69/UnityDownloadAssistant-2019.4.10f1.exe?_ga=2.202989653.592362703.1600167864-1960145781.1600167864
+
+注意：
+1）安装unity2019.4.10f1的安装界面，默认会选择安装visualstudio2019组件，注意这里应该是需要勾选安装visualstudio2019的。
+
+2）下载安装unity2019.4.10f1之后，尝试启动unity2019，此时会有弹框提示需要下载unityhub，根据提示前往下载并安装，打开之后注册或登录账号（账号是需要验证手机号的），unityhub账号相关可参考此链接：https://blog.csdn.net/linxinfa/article/details/102579820
+】
+
+【
+vs版本号：Microsoft Visual Studio Community 2019 16.73
+
+打开vs后，在菜单栏中点击 工具-》获取工具和功能，在弹框中：工作负载选项里确保选中1）使用unity的游戏开发 2)通用windows平台开发；单个组件里确保选中：1）USB设备连接性。 2）windows 10 SDK (10.0.18362.0)（目前所用的SDK版本号是(10.0.18362.0)，具体的版本号选择参考下一条目的说明）
+
+注意：上述windows 10 SDK的版本请参考此链接：https://docs.microsoft.com/zh-cn/windows/mixed-reality/install-the-tools?tabs=unity
+】
+
+【
+hololens模拟器使用版本：HoloLens 模拟器生成10.0.17763.134
+
+下载页面链接（在其中找到相对应版本进行下载）：https://docs.microsoft.com/zh-cn/windows/mixed-reality/hololens-emulator-archive
+】
+
+'''
+
+hololens开发文档地址：
+https://docs.microsoft.com/zh-cn/windows/mixed-reality/install-the-tools?tabs=unity
