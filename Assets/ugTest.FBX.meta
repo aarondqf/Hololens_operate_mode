@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 75896554c388aaf4784a320d0f5fab11
+guid: 325d6a9b3877d264fa37a0173ca6abe0
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -93,5 +93,5 @@ ModelImporter:
   avatarSetup: 0
   additionalBone: 0
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: fbx
+  assetBundleVariant: unity3d

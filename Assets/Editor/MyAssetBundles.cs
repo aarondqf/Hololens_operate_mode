@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEditor;
+using System.IO;
 
 public class MyAssetBundles : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [MenuItem("Assets/BuildBundles")]//在Assets选项中添加点击按钮
+    static void BuildBundles()
     {
-        
-    }
+        string assetBundlesLibrary = "AssetBundles";
+        if (!Directory.Exists(assetBundlesLibrary))//判断本地目录是否已经存在目录名
+        {
+            Directory.CreateDirectory(assetBundlesLibrary);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        BuildPipeline.BuildAssetBundles(assetBundlesLibrary, BuildAssetBundleOptions.None,
+            BuildTarget.StandaloneWindows64);//在此目录下创建AssetBundle
     }
 }
