@@ -7,6 +7,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using Microsoft.MixedReality.Toolkit.Input;
+using Microsoft.MixedReality.Toolkit.UI;
 
 public class WebDownload : MonoBehaviour
 {
@@ -47,29 +49,49 @@ public class WebDownload : MonoBehaviour
             yield return null;
         }
 
-        UnityWebRequest request2 = UnityWebRequestAssetBundle.GetAssetBundle(bundle_url);                 //传入地址2
-        if (request2.isDone)
+        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(bundle_url);                 //传入地址2
+        if (request.isDone)
         {
             text.text = "true down";
         }
-        text.text = (request2.downloadProgress * 100).ToString() + "%";
+        text.text = (request.downloadProgress * 100).ToString() + "%";
 
-        yield return request2.Send();
+        yield return request.Send();
 
         text.text = "开始从AssetBundle中获取资源 ";
 
-        abs = (request2.downloadHandler as DownloadHandlerAssetBundle).assetBundle;                //获取连接请求2，返回AssetBundle资源
+        abs = (request.downloadHandler as DownloadHandlerAssetBundle).assetBundle;                //获取连接请求，返回AssetBundle资源
         text.text = "AssetBundle ab2" + abs.ToString();
 
-        GameObject objPart = (GameObject)Instantiate(abs.LoadAsset("ugTest1"));
-        text.text = "GameObject objPart";
+        //GameObject objPart = (GameObject)Instantiate(abs.LoadAsset("ugTest1"));
+        //text.text = "GameObject objPart";
 
         string[] fbx_names = abs.GetAllAssetNames();
 
         for(int i = 0; i < fbx_names.Length; i++)
         {
+            int length = fbx_names[i].Split('/').Length;
+            string name = fbx_names[i].Split('/')[length-1].Split('.')[0];
+            fbx_names[i] = name;
             Debug.Log(fbx_names[i]);
         }
 
+        for(int j = 0; j < fbx_names.Length; j++)
+        {
+            GameObject _ = (GameObject)Instantiate(abs.LoadAsset(fbx_names[j]));
+            _.transform.localPosition = new Vector3(j, 0, 2);
+            _.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            AddComponent(_);
+        }
+
+    }
+
+    void AddComponent(GameObject obj)
+    {
+        obj.AddComponent<NearInteractionGrabbable>();
+        obj.AddComponent<ObjectManipulator>();
+        obj.AddComponent<BoxCollider>();
+        obj.transform.localPosition = new Vector3(0, 0, 2);
+        obj.transform.localScale = new Vector3(1, 1, 1);
     }
 }
