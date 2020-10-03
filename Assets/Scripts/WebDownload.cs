@@ -9,15 +9,16 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UI;
+using TMPro;
 
 public class WebDownload : MonoBehaviour
 {
     private bool isLoadModel = false;
-    private string bundle_url = "http://localhost:8000/Documents/_Projects/Hololens_projects/Resources/Bundles/hololens_fbxs.unity3d";
+    public string bundle_url = "http://localhost:8000/Documents/_Projects/Hololens_projects/Resources/Bundles/hololens_fbxs.unity3d";
 
-    private Text text;
+    private TextMeshProUGUI text;
     private AssetBundle abs = null;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +40,10 @@ public class WebDownload : MonoBehaviour
     public IEnumerator LoadModel(string bundle_url)
     {
         Debug.Log("进入网络下载");
-        //image = GameObject.Find("Image").GetComponent<Image>();                                                //动态获取UI上的组件
-        text = GameObject.Find("Text").GetComponent<Text>();
+        //image = GameObject.Find("Image").GetComponent<Image>(); 
+        //动态获取UI上的组件
+        text = GameObject.Find("Text(TMP)").GetComponent<TextMeshProUGUI>();
+        Get_all_component(GameObject.Find("Text(TMP)"));
         text.text = "开始下载";
 
 
@@ -93,5 +96,14 @@ public class WebDownload : MonoBehaviour
         obj.AddComponent<BoxCollider>();
         obj.transform.localPosition = new Vector3(0, 0, 2);
         obj.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    void Get_all_component(GameObject obj)
+    {
+        foreach (var component in obj.GetComponents<Component>())
+        {
+            Debug.Log("所有的组件是:");
+            Debug.Log(component.GetType());
+        }
     }
 }

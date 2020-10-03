@@ -426,9 +426,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1716530839}
+<<<<<<< Updated upstream
   - {fileID: 295456244}
   - {fileID: 1557039926}
   - {fileID: 136585272}
+=======
+>>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -437,6 +440,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< Updated upstream
 --- !u!1 &295456243
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +512,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295456243}
   m_CullTransparentMesh: 0
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1284641898
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +781,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cameraTexture: {fileID: 1716530840}
-  m_QRCode: {fileID: 295456245}
 --- !u!4 &2014488761
 Transform:
   m_ObjectHideFlags: 0
