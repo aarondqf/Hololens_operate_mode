@@ -17,7 +17,9 @@ public class WebDownload : MonoBehaviour
 {
     private bool isLoadModel = false;
     //设置下载模型的网址
-    private string bundle_url = g_scan_result;
+    private string bundle_url = Global.g_scan_result;
+    private string video_url = Global.g_video_url;
+    //private string bundle_url = "http://192.168.199.212:8000/Documents/Models/hololens_fbxs.unity3d";
 
     private TextMeshProUGUI text;
     private AssetBundle abs = null;
@@ -31,9 +33,12 @@ public class WebDownload : MonoBehaviour
     {
         rawImage = GameObject.Find("PlayerCanva").GetComponent<RawImage>();
         videoPlayer = GameObject.Find("PlayerCanva").GetComponent<VideoPlayer>();
+        Debug.Log("++++++++++++++++++++++++");
+        Debug.Log("global_video_url webdownload is this: ");
+        Debug.Log(Global.g_video_url);
         //设置播放视频的链接
-        videoPlayer.url = g_video_url;
-        //videoPlayer.Pause();
+        videoPlayer.url = video_url;
+        videoPlayer.Pause();
     }
 
     // Update is called once per frame
@@ -123,8 +128,9 @@ public IEnumerator LoadModel(string bundle_url)
         for(int j = 0; j < fbx_names.Length; j++)
         {
             GameObject _ = (GameObject)Instantiate(abs.LoadAsset(fbx_names[j]));
-            _.transform.localPosition = new Vector3(j, 0, 2);
-            _.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            float x = (float)(j - fbx_names.Length / 2) / 4;
+            _.transform.localPosition = new Vector3(x, 0, 0.4f);
+           
             AddComponent(_);
         }
 
@@ -135,8 +141,9 @@ public IEnumerator LoadModel(string bundle_url)
         obj.AddComponent<BoxCollider>();
         obj.AddComponent<NearInteractionGrabbable>();
         obj.AddComponent<ObjectManipulator>();
-        obj.transform.localPosition = new Vector3(0, 0, 2);
-        obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        float size = obj.GetComponent<MeshRenderer>().bounds.size.x;
+        float scale = 0.2f / size;
+        obj.transform.localScale = new Vector3(scale, scale, scale);
     }
 
     void Get_all_component(GameObject obj)

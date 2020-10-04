@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Global
 {
-    public static string g_scan_result { get; set; }
-    public static string g_video_url { get; set; }
-    
+    public static string g_scan_result = "default_model_url";
+
+    public static string g_video_url = "default_video_url";
 }
