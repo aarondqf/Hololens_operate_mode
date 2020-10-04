@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WebDownload : MonoBehaviour
 {
@@ -37,14 +38,19 @@ public class WebDownload : MonoBehaviour
         StartCoroutine(LoadModel(bundle_url));
     }
 
+    public void ReturnScanScene()
+    {
+        SceneManager.LoadScene("UWPScan");
+    }
+
     public IEnumerator LoadModel(string bundle_url)
     {
         Debug.Log("进入网络下载");
         //image = GameObject.Find("Image").GetComponent<Image>(); 
         //动态获取UI上的组件
-        text = GameObject.Find("Text(TMP)").GetComponent<TextMeshProUGUI>();
-        Get_all_component(GameObject.Find("Text(TMP)"));
-        text.text = "开始下载";
+        //text = GameObject.Find("Text(TMP)").GetComponent<TextMeshProUGUI>();
+        //Get_all_component(GameObject.Find("Text(TMP)"));
+        //text.text = "开始下载";
 
 
         while (Caching.ready == false)
@@ -55,16 +61,16 @@ public class WebDownload : MonoBehaviour
         UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(bundle_url);                 //传入地址2
         if (request.isDone)
         {
-            text.text = "true down";
+            //text.text = "true down";
         }
-        text.text = (request.downloadProgress * 100).ToString() + "%";
+        //text.text = (request.downloadProgress * 100).ToString() + "%";
 
         yield return request.Send();
 
-        text.text = "开始从AssetBundle中获取资源 ";
+        //text.text = "开始从AssetBundle中获取资源 ";
 
         abs = (request.downloadHandler as DownloadHandlerAssetBundle).assetBundle;                //获取连接请求，返回AssetBundle资源
-        text.text = "AssetBundle ab2" + abs.ToString();
+        //text.text = "AssetBundle ab2" + abs.ToString();
 
         //GameObject objPart = (GameObject)Instantiate(abs.LoadAsset("ugTest1"));
         //text.text = "GameObject objPart";
@@ -83,7 +89,7 @@ public class WebDownload : MonoBehaviour
         {
             GameObject _ = (GameObject)Instantiate(abs.LoadAsset(fbx_names[j]));
             _.transform.localPosition = new Vector3(j, 0, 2);
-            _.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            _.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             AddComponent(_);
         }
 
@@ -91,11 +97,11 @@ public class WebDownload : MonoBehaviour
 
     void AddComponent(GameObject obj)
     {
+        obj.AddComponent<BoxCollider>();
         obj.AddComponent<NearInteractionGrabbable>();
         obj.AddComponent<ObjectManipulator>();
-        obj.AddComponent<BoxCollider>();
         obj.transform.localPosition = new Vector3(0, 0, 2);
-        obj.transform.localScale = new Vector3(1, 1, 1);
+        obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
     }
 
     void Get_all_component(GameObject obj)

@@ -44,7 +44,7 @@ public class Scan : MonoBehaviour
         }
         string tDeviceName = tDevices[0].name;  //获取第一个摄像头，用第一个摄像头的画面生成图片信息
         m_webCameraTexture = new WebCamTexture(tDeviceName, 300, 300);//名字,宽,高
-        m_cameraTexture.texture = m_webCameraTexture;   //赋值图片信息
+        //m_cameraTexture.texture = m_webCameraTexture;   //赋值图片信息
         m_webCameraTexture.Play();  //开始实时显示
 
         InvokeRepeating("CheckQRCode", 0, m_delayTime);
