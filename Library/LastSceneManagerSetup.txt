@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Web_load.unity
+- path: Assets/Scenes/UWPScan.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
