@@ -9,8 +9,8 @@ public class URLVideoPlayer : MonoBehaviour {
 	private RawImage rawImage;
 	private VideoPlayer videoPlayer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		rawImage = this.GetComponent <RawImage>();
 		videoPlayer = this.GetComponent <VideoPlayer> ();
 	}

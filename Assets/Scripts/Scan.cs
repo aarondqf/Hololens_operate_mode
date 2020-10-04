@@ -64,18 +64,18 @@ public class Scan : MonoBehaviour
         {
             Debug.Log(tResult.Text);
             scan_info = tResult.Text;
-            Global.g_scan_result = scan_info;
+            Global.g_scan_result = scan_info.Split('?')[0];
+            Global.g_video_url = scan_info.Split('?')[1];
 
             Debug.Log("Global.g_scan_result is ");
             Debug.Log(Global.g_scan_result);
+            Debug.Log("Global.g_video_url");
+            Debug.Log(Global.g_video_url);
             m_webCameraTexture.Stop();
             SceneManager.LoadScene("Web_load");
         }
         else
         {
-            Global.g_scan_result = "默认二维码结果，扫描失败";
-            Debug.Log("Global.g_scan_result is ");
-            Debug.Log(Global.g_scan_result);
             Debug.Log("scan fail");
         }
     }

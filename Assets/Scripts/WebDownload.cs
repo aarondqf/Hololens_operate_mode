@@ -11,20 +11,29 @@ using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class WebDownload : MonoBehaviour
 {
     private bool isLoadModel = false;
-    public string bundle_url = "http://localhost:8000/Documents/_Projects/Hololens_projects/Resources/Bundles/hololens_fbxs.unity3d";
+    //设置下载模型的网址
+    private string bundle_url = g_scan_result;
 
     private TextMeshProUGUI text;
     private AssetBundle abs = null;
-    
+
+    private RawImage rawImage;
+    private VideoPlayer videoPlayer;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rawImage = GameObject.Find("PlayerCanva").GetComponent<RawImage>();
+        videoPlayer = GameObject.Find("PlayerCanva").GetComponent<VideoPlayer>();
+        //设置播放视频的链接
+        videoPlayer.url = g_video_url;
+        //videoPlayer.Pause();
     }
 
     // Update is called once per frame
@@ -38,12 +47,38 @@ public class WebDownload : MonoBehaviour
         StartCoroutine(LoadModel(bundle_url));
     }
 
-    public void ReturnScanScene()
+    public void OnClickReturnScanScene()
     {
         SceneManager.LoadScene("UWPScan");
     }
 
-    public IEnumerator LoadModel(string bundle_url)
+    public void OnClickPrintHello()
+    {
+        Debug.Log("Hello");
+    }
+
+    public void OnClickToPlay()
+    {
+        if (videoPlayer.isPlaying == false)
+        {
+
+            videoPlayer.Play();
+
+            //text_PlayOrPause.text = "播放";
+
+        }
+    }
+
+    public void OnClickToPause()
+    {
+        if (videoPlayer.isPlaying == true)
+        {
+            videoPlayer.Pause();
+
+        }
+    }
+
+public IEnumerator LoadModel(string bundle_url)
     {
         Debug.Log("进入网络下载");
         //image = GameObject.Find("Image").GetComponent<Image>(); 
